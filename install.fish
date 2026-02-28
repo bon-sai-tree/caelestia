@@ -295,6 +295,13 @@ if set -q _flag_zen
     log 'Please install the CaelestiaFox extension from https://addons.mozilla.org/en-US/firefox/addon/caelestiafox if you have not already done so.'
 end
 
+# Shell config (shell.json)
+mkdir -p $config/caelestia
+if confirm-overwrite $config/caelestia/shell.json
+    log 'Installing shell config...'
+    ln -s (realpath caelestia/shell.json) $config/caelestia/shell.json
+end
+
 # Generate scheme stuff if needed
 if ! test -f $state/caelestia/scheme.json
     caelestia scheme set -n shadotheme
